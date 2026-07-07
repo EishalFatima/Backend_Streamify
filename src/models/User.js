@@ -61,6 +61,13 @@ try {
 }
 })
 
+// Comapiring the password the user entered with the hashed password 
+userSchema.methods.matchPassword = async function(enteredPassword){
+   const isPasswordCorrect = await bcrypt.compare(enteredPassword , this.password)
+return  isPasswordCorrect
+
+} 
+
 const User = new mongoose.model("User" , userSchema)
 
 export default User;
